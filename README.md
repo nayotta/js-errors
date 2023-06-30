@@ -1,28 +1,127 @@
-# ts-module-template
+# js-errors
 
-[![Lint and Build](https://github.com/nayotta/ts-module-template/actions/workflows/lint-build.yml/badge.svg)](https://github.com/nayotta/ts-module-template/actions/workflows/lint-build.yml)[![Node.js Package](https://github.com/nayotta/ts-module-template/actions/workflows/release.yml/badge.svg)](https://github.com/nayotta/ts-module-template/actions/workflows/release.yml)
+[![Lint and Build](https://github.com/nayotta/js-errors/actions/workflows/lint-build.yml/badge.svg)](https://github.com/nayotta/js-errors/actions/workflows/lint-build.yml)[![Node.js Package](https://github.com/nayotta/js-errors/actions/workflows/release.yml/badge.svg)](https://github.com/nayotta/js-errors/actions/workflows/release.yml)
 
-> A simple typescript module template with eslint & github action
+> common business errors
 
-## Build Setup
+## use
 
-```sh
-# clone the project
-$ git clone https://github.com/nayotta/ts-module-template.git
+```js
+// COMMONJS
+const { errors } = require('@nayotta/errors')
+// ESM
+import {
+	ToBeDoneError,
+	errors
+} from '@nayotta/errors'
 
-# enter the project directory
-$ cd ts-module-templte
+async function do () {
+	throw new errors.ToBeDoneError('function do')
+}
 
-# install dependencies
-$ npm install
-
-# build lib
-$ npm run build
-
-# run test
-$ npm run test
+async function run () {
+	const res = await do().catch(err => err)
+	if (res instanceof Error) {
+		if (errors.is(res, errors.ToBeDoneError)) {
+			console.log(res.name)
+			console.log(res.message)
+			console.log(res.code)
+			console.log(res)
+			return
+		}
+		throw res
+	}
+}
 ```
 
-## Private packages
+### errors
 
-If this module with private packages, you can get it by edit [.npmrc](./.npmrc) & [.github/workflows/*.yml](.github/workflows).
+#### UnauthorizationError
+
+- name: `UNAUTHORIZATION_ERROR`
+- code: `401`
+- message: `unauthorization: <message>`
+
+#### NotFoundError
+
+- name: `NOT_FOUND_ERROR`
+- code: `404`
+- message: `not found: <name>`
+
+#### ResourceNotFoundError
+
+- name: `RESOURCE_NOT_FOUND_ERROR`
+- code: `404`
+- message: `resource not found: <resource>:<name> not found`
+
+#### ResourceAlreadyExistedError
+
+- name: `RESOURCE_ALREADY_EXISTED_ERROR`
+- code: `400`
+- message: `resource already existed: <resource>:<name> already existed`
+
+#### InvalidDataError
+
+- name: `INVALID_DATA_ERROR`
+- code: `400`
+- message: `invalid data: <name>`
+
+#### RequiredError
+
+- name: `REQUIRED_ERROR`
+- code: `400`
+- message: `required: <name>`
+
+#### ArgumentRequiredError
+
+- name: `ARGUMENT_REQUIRED_ERROR`
+- code: `400`
+- message: `argument required: <name>`
+
+#### OptionRequiredError
+
+- name: `OPTION_REQUIRED_ERROR`
+- code: `400`
+- message: `option required: <name>`
+
+#### HeaderRequiredError
+
+- name: `HEADER_REQUIRED_ERROR`
+- code: `400`
+- message: `header required: <name>`
+
+#### NotImplementedError
+
+- name: `NOT_IMPLEMENTED_ERROR`
+- code: `403`
+- message: `not implemented: <name>`
+
+#### UnsupportedError
+
+- name: `UNSUPPORTED_ERROR`
+- code: `403`
+- message: `unsupported: <name>`
+
+#### TypeSupportedError
+
+- name: `TYPE_SUPPORTED_ERROR`
+- code: `403`
+- message: `type supported: <type>:<name>`
+
+#### NotAllowedError
+
+- name: `NOT_ALLOWED_ERROR`
+- code: `403`
+- message: `not allowed: <name>`
+
+#### TypeNotAllowedError
+
+- name: `TYPE_NOT_ALLOWED_ERROR`
+- code: `403`
+- message: `type not allowed: <type>:<name>`
+
+#### ToBeDoneError
+
+- name: `TBD_ERROR`
+- code: `403`
+- message: `TBD: <name>`

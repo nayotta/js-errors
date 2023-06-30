@@ -13,15 +13,19 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
-      # npm with private packages
-      # - run: npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_ACCESS_TOKEN }}
-      - run: npm install
-      - run: npm run lint
-      - run: npm run test
-      - run: npm run build
-      - run: npm publish
-      # public package
-      # - run: npm publish --access public
+      - uses: little-core-labs/get-git-tag@v3.0.1
+        id: tagName
+        with:
+          tagRegex: "v(.*)"
+      - run: |
+          cat package.json | jq --arg arg1 "${GIT_TAG_NAME}" '.version |= $arg1' > package.json.tmp && mv package.json.tmp package.json
+          echo './package.json'
+          cat package.json | grep version
+          npm install
+          npm run lint
+          npm run test
+          npm run build
+          npm publish --access public
 
   pkg-release:
     runs-on: ubuntu-latest
@@ -32,10 +36,16 @@ jobs:
           node-version: '16.x'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@nayotta'
-      # npm with private packages
-      # - run: npm config set '//npm.pkg.github.com/:_authToken' ${{ secrets.PKG_ACCESS_TOKEN }}
-      - run: npm install
-      - run: npm run lint
-      - run: npm run test
-      - run: npm run build
-      - run: npm publish
+      - uses: little-core-labs/get-git-tag@v3.0.1
+        id: tagName
+        with:
+          tagRegex: "v(.*)"
+      - run: |
+          cat package.json | jq --arg arg1 "${GIT_TAG_NAME}" '.version |= $arg1' > package.json.tmp && mv package.json.tmp package.json
+          echo './package.json'
+          cat package.json | grep version
+          npm install
+          npm run lint
+          npm run test
+          npm run build
+          npm publish
