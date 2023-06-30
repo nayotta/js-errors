@@ -1,7 +1,7 @@
 {
 	"name": "@nayotta/errors",
 	"version": "0.0.0-unknown",
-	"description": "ts module template",
+	"description": "js common business errors",
 	"main": "lib/cjs/index.js",
 	"module": "lib/mjs/index.js",
 	"exports": {
@@ -15,7 +15,7 @@
 		"package*.json"
 	],
 	"scripts": {
-		"build": "rm -rf lib/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+		"build": "rm -rf lib/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && ./fixup.sh",
 		"lint": "npm run lint:src && npm run lint:test",
 		"lint:src": "eslint \"src/**/*\"",
 		"lint:test": "eslint \"test/**/*\"",
@@ -23,24 +23,17 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/nayotta/ts-module-template.git"
+		"url": "git+https://github.com/nayotta/js-errors.git"
 	},
 	"keywords": [
-		"typescript",
-		"ts",
-		"javascript",
-		"js",
-		"module",
-		"lib",
-		"template",
-		"esm"
+		"errors"
 	],
 	"author": "nayotta.fe",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/nayotta/ts-module-template/issues"
+		"url": "https://github.com/nayotta/js-errors/issues"
 	},
-	"homepage": "https://github.com/nayotta/ts-module-template#readme",
+	"homepage": "https://github.com/nayotta/js-errors#readme",
 	"devDependencies": {
 		"@types/jest": "^29.5.0",
 		"@typescript-eslint/eslint-plugin": "^5.60.1",
