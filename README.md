@@ -14,7 +14,10 @@ $ npm install @nayotta/errors --save
 
 ```js
 // COMMONJS
-const { errors } = require('@nayotta/errors')
+const {
+	ToBeDoneError,
+	errors
+} = require('@nayotta/errors')
 // ESM
 import {
 	ToBeDoneError,
