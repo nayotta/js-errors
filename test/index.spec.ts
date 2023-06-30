@@ -1,11 +1,19 @@
 import { errors } from '../src'
 
+test('is error', () => {
+	const err = new Error('test')
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isError('test')).toBe(false)
+})
+
 test('unauthorization error', () => {
 	const err = new errors.UnauthorizationError('token')
 	expect(err instanceof Error).toBe(true)
 	expect(err.name).toBe('UNAUTHORIZATION_ERROR')
 	expect(err.message).toBe('unauthorization: token')
 	expect(err.code).toBe(401)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isUnauthorizationError(err)).toBe(true)
 })
 
 test('not found error', () => {
@@ -14,6 +22,8 @@ test('not found error', () => {
 	expect(err.name).toBe('NOT_FOUND_ERROR')
 	expect(err.message).toBe('not found: name')
 	expect(err.code).toBe(404)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isNotFoundError(err)).toBe(true)
 })
 
 test('resource not found error', () => {
@@ -22,6 +32,8 @@ test('resource not found error', () => {
 	expect(err.name).toBe('RESOURCE_NOT_FOUND_ERROR')
 	expect(err.message).toBe('resource not found: name:nyt not found')
 	expect(err.code).toBe(404)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isResourceNotFoundError(err)).toBe(true)
 })
 
 test('resource already existed error', () => {
@@ -30,6 +42,8 @@ test('resource already existed error', () => {
 	expect(err.name).toBe('RESOURCE_ALREADY_EXISTED_ERROR')
 	expect(err.message).toBe('resource already existed: name:nyt already existed')
 	expect(err.code).toBe(400)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isResourceAlreadyExistedError(err)).toBe(true)
 })
 
 test('invalid data error', () => {
@@ -38,6 +52,8 @@ test('invalid data error', () => {
 	expect(err.name).toBe('INVALID_DATA_ERROR')
 	expect(err.message).toBe('invalid data: name')
 	expect(err.code).toBe(400)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isInvalidDataError(err)).toBe(true)
 })
 
 test('required error', () => {
@@ -46,6 +62,8 @@ test('required error', () => {
 	expect(err.name).toBe('REQUIRED_ERROR')
 	expect(err.message).toBe('required: name')
 	expect(err.code).toBe(400)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isRequiredError(err)).toBe(true)
 })
 
 test('argument required error', () => {
@@ -54,6 +72,8 @@ test('argument required error', () => {
 	expect(err.name).toBe('ARGUMENT_REQUIRED_ERROR')
 	expect(err.message).toBe('argument required: name')
 	expect(err.code).toBe(400)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isArgumentRequiredError(err)).toBe(true)
 })
 
 test('option required error', () => {
@@ -62,6 +82,8 @@ test('option required error', () => {
 	expect(err.name).toBe('OPTION_REQUIRED_ERROR')
 	expect(err.message).toBe('option required: X-x')
 	expect(err.code).toBe(400)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isOptionRequiredError(err)).toBe(true)
 })
 
 test('header required error', () => {
@@ -70,6 +92,8 @@ test('header required error', () => {
 	expect(err.name).toBe('HEADER_REQUIRED_ERROR')
 	expect(err.message).toBe('header required: X-x')
 	expect(err.code).toBe(400)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isHeaderRequiredError(err)).toBe(true)
 })
 
 test('not implemented error', () => {
@@ -78,6 +102,8 @@ test('not implemented error', () => {
 	expect(err.name).toBe('NOT_IMPLEMENTED_ERROR')
 	expect(err.message).toBe('not implemented: function')
 	expect(err.code).toBe(403)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isNotImplementedError(err)).toBe(true)
 })
 
 test('unsupported error', () => {
@@ -86,6 +112,8 @@ test('unsupported error', () => {
 	expect(err.name).toBe('UNSUPPORTED_ERROR')
 	expect(err.message).toBe('unsupported: function')
 	expect(err.code).toBe(403)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isUnsupportedError(err)).toBe(true)
 })
 
 test('type unsupported error', () => {
@@ -94,6 +122,8 @@ test('type unsupported error', () => {
 	expect(err.name).toBe('TYPE_UNSUPPORTED_ERROR')
 	expect(err.message).toBe('type unsupported: function:a')
 	expect(err.code).toBe(403)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isTypeUnsupportedError(err)).toBe(true)
 })
 
 test('not allowed error', () => {
@@ -102,6 +132,8 @@ test('not allowed error', () => {
 	expect(err.name).toBe('NOT_ALLOWED_ERROR')
 	expect(err.message).toBe('not allowed: function')
 	expect(err.code).toBe(403)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isNotAllowedError(err)).toBe(true)
 })
 
 test('type not allowed error', () => {
@@ -110,6 +142,8 @@ test('type not allowed error', () => {
 	expect(err.name).toBe('TYPE_NOT_ALLOWED_ERROR')
 	expect(err.message).toBe('type not allowed: function:a')
 	expect(err.code).toBe(403)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isTypeNotAllowedError(err)).toBe(true)
 })
 
 test('to be done error', () => {
@@ -118,10 +152,6 @@ test('to be done error', () => {
 	expect(err.name).toBe('TBD_ERROR')
 	expect(err.message).toBe('TBD: function a')
 	expect(err.code).toBe(403)
-})
-
-test('is', () => {
-	const e1 = new errors.UnauthorizationError('e1')
-	const e2 = new errors.UnauthorizationError('e2')
-	expect(errors.is(e1, e2)).toBe(true)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isToBeDoneError(err)).toBe(true)
 })

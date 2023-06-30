@@ -23,7 +23,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/nayotta/ts-module-template.git"
+		"url": "git+https://github.com/nayotta/js-errorse.git"
 	},
 	"keywords": [
 		"typescript",
@@ -38,9 +38,9 @@
 	"author": "nayotta.fe",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/nayotta/ts-module-template/issues"
+		"url": "https://github.com/nayotta/js-errorse/issues"
 	},
-	"homepage": "https://github.com/nayotta/ts-module-template#readme",
+	"homepage": "https://github.com/nayotta/js-errorse#readme",
 	"devDependencies": {
 		"@types/jest": "^29.5.0",
 		"@typescript-eslint/eslint-plugin": "^5.60.1",

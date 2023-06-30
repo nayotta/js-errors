@@ -1,8 +1,14 @@
-# js-errors
+# @nayotta/errors
 
 [![Lint and Build](https://github.com/nayotta/js-errors/actions/workflows/lint-build.yml/badge.svg)](https://github.com/nayotta/js-errors/actions/workflows/lint-build.yml)[![Node.js Package](https://github.com/nayotta/js-errors/actions/workflows/release.yml/badge.svg)](https://github.com/nayotta/js-errors/actions/workflows/release.yml)
 
 > common business errors
+
+## install
+
+```shell
+$ npm install @nayotta/errors --save
+```
 
 ## use
 
@@ -22,7 +28,7 @@ async function do () {
 async function run () {
 	const res = await do().catch(err => err)
 	if (res instanceof Error) {
-		if (errors.is(res, errors.ToBeDoneError)) {
+		if (errors.isToBeDoneError(res)) {
 			console.log(res.name) // TBD_ERROR
 			console.log(res.message) // TBD: function a
 			console.log(res.code) // 403
