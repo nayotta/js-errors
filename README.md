@@ -23,9 +23,9 @@ async function run () {
 	const res = await do().catch(err => err)
 	if (res instanceof Error) {
 		if (errors.is(res, errors.ToBeDoneError)) {
-			console.log(res.name)
-			console.log(res.message)
-			console.log(res.code)
+			console.log(res.name) // TBD_ERROR
+			console.log(res.message) // TBD: function a
+			console.log(res.code) // 403
 			console.log(res)
 			return
 		}
