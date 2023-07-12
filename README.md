@@ -129,6 +129,12 @@ async function run () {
 - code: `403`
 - message: `type not allowed: <type>:<name>`
 
+#### UnexpectedError
+
+- name: `UNEXPECTED_ERROR`
+- code: `500`
+- message: `unexpected: <name>`
+
 #### ToBeDoneError
 
 - name: `TBD_ERROR`
