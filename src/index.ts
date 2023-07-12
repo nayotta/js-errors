@@ -1,5 +1,6 @@
 export class JsError extends Error {
-	public code: number = 0
+	public readonly name: string = 'ERROR'
+	public readonly code: number = 0
 }
 
 export function isError (err: any): boolean {
@@ -12,8 +13,8 @@ export function isError (err: any): boolean {
 export const UNAUTHORIZATION_ERROR = 'UNAUTHORIZATION_ERROR'
 
 export class UnauthorizationError extends JsError {
-	public name: string = UNAUTHORIZATION_ERROR
-	public code: number = 401
+	public readonly name: string = UNAUTHORIZATION_ERROR
+	public readonly code: number = 401
 	public message: string = 'unauthorization'
 	constructor (message?: string) {
 		super()
@@ -31,8 +32,8 @@ export function isUnauthorizationError (err: Error): boolean {
 export const NOT_FOUND_ERROR = 'NOT_FOUND_ERROR'
 
 export class NotFoundError extends JsError {
-	public name: string = NOT_FOUND_ERROR
-	public code: number = 404
+	public readonly name: string = NOT_FOUND_ERROR
+	public readonly code: number = 404
 	public message: string = 'not found'
 	constructor (name?: string) {
 		super()
@@ -50,8 +51,8 @@ export function isNotFoundError (err: Error): boolean {
 export const RESOURCE_NOT_FOUND_ERROR = 'RESOURCE_NOT_FOUND_ERROR'
 
 export class ResourceNotFoundError extends JsError {
-	public name: string = RESOURCE_NOT_FOUND_ERROR
-	public code: number = 404
+	public readonly name: string = RESOURCE_NOT_FOUND_ERROR
+	public readonly code: number = 404
 	public message: string = 'resource not found'
 	constructor (resource: string, name: string) {
 		super()
@@ -69,8 +70,8 @@ export function isResourceNotFoundError (err: Error): boolean {
 export const RESOURCE_ALREADY_EXISTED_ERROR = 'RESOURCE_ALREADY_EXISTED_ERROR'
 
 export class ResourceAlreadyExistedError extends JsError {
-	public name: string = RESOURCE_ALREADY_EXISTED_ERROR
-	public code: number = 400
+	public readonly name: string = RESOURCE_ALREADY_EXISTED_ERROR
+	public readonly code: number = 400
 	public message: string = 'resource already existed'
 	constructor (resource: string, name: string) {
 		super()
@@ -88,8 +89,8 @@ export function isResourceAlreadyExistedError (err: Error): boolean {
 export const INVALID_DATA_ERROR = 'INVALID_DATA_ERROR'
 
 export class InvalidDataError extends JsError {
-	public name: string = INVALID_DATA_ERROR
-	public code: number = 400
+	public readonly name: string = INVALID_DATA_ERROR
+	public readonly code: number = 400
 	public message: string = 'invalid data'
 	constructor (name?: string) {
 		super()
@@ -107,8 +108,8 @@ export function isInvalidDataError (err: Error): boolean {
 export const REQUIRED_ERROR = 'REQUIRED_ERROR'
 
 export class RequiredError extends JsError {
-	public name: string = REQUIRED_ERROR
-	public code: number = 400
+	public readonly name: string = REQUIRED_ERROR
+	public readonly code: number = 400
 	public message: string = 'required'
 	constructor (name?: string) {
 		super()
@@ -126,8 +127,8 @@ export function isRequiredError (err: Error): boolean {
 export const ARGUMENT_REQUIRED_ERROR = 'ARGUMENT_REQUIRED_ERROR'
 
 export class ArgumentRequiredError extends JsError {
-	public name: string = ARGUMENT_REQUIRED_ERROR
-	public code: number = 400
+	public readonly name: string = ARGUMENT_REQUIRED_ERROR
+	public readonly code: number = 400
 	public message: string = 'argument required'
 	constructor (name?: string) {
 		super()
@@ -145,8 +146,8 @@ export function isArgumentRequiredError (err: Error): boolean {
 export const OPTION_REQUIRED_ERROR = 'OPTION_REQUIRED_ERROR'
 
 export class OptionRequiredError extends JsError {
-	public name: string = OPTION_REQUIRED_ERROR
-	public code: number = 400
+	public readonly name: string = OPTION_REQUIRED_ERROR
+	public readonly code: number = 400
 	public message: string = 'option required'
 	constructor (name?: string) {
 		super()
@@ -164,8 +165,8 @@ export function isOptionRequiredError (err: Error): boolean {
 export const HEADER_REQUIRED_ERROR = 'HEADER_REQUIRED_ERROR'
 
 export class HeaderRequiredError extends JsError {
-	public name: string = HEADER_REQUIRED_ERROR
-	public code: number = 400
+	public readonly name: string = HEADER_REQUIRED_ERROR
+	public readonly code: number = 400
 	public message: string = 'header required'
 	constructor (name?: string) {
 		super()
@@ -183,8 +184,8 @@ export function isHeaderRequiredError (err: Error): boolean {
 export const NOT_IMPLEMENTED_ERROR = 'NOT_IMPLEMENTED_ERROR'
 
 export class NotImplementedError extends JsError {
-	public name: string = NOT_IMPLEMENTED_ERROR
-	public code: number = 403
+	public readonly name: string = NOT_IMPLEMENTED_ERROR
+	public readonly code: number = 403
 	public message: string = 'not implemented'
 	constructor (name?: string) {
 		super()
@@ -202,8 +203,8 @@ export function isNotImplementedError (err: Error): boolean {
 export const UNSUPPORTED_ERROR = 'UNSUPPORTED_ERROR'
 
 export class UnsupportedError extends JsError {
-	public name: string = UNSUPPORTED_ERROR
-	public code: number = 403
+	public readonly name: string = UNSUPPORTED_ERROR
+	public readonly code: number = 403
 	public message: string = 'unsupported'
 	constructor (name?: string) {
 		super()
@@ -221,8 +222,8 @@ export function isUnsupportedError (err: Error): boolean {
 export const TYPE_UNSUPPORTED_ERROR = 'TYPE_UNSUPPORTED_ERROR'
 
 export class TypeUnsupportedError extends JsError {
-	public name: string = TYPE_UNSUPPORTED_ERROR
-	public code: number = 403
+	public readonly name: string = TYPE_UNSUPPORTED_ERROR
+	public readonly code: number = 403
 	public message: string = 'type unsupported'
 	constructor (type: string, name: string) {
 		super()
@@ -240,8 +241,8 @@ export function isTypeUnsupportedError (err: Error): boolean {
 export const NOT_ALLOWED_ERROR = 'NOT_ALLOWED_ERROR'
 
 export class NotAllowedError extends JsError {
-	public name: string = NOT_ALLOWED_ERROR
-	public code: number = 403
+	public readonly name: string = NOT_ALLOWED_ERROR
+	public readonly code: number = 403
 	public message: string = 'not allowed'
 	constructor (name?: string) {
 		super()
@@ -259,8 +260,8 @@ export function isNotAllowedError (err: Error): boolean {
 export const TYPE_NOT_ALLOWED_ERROR = 'TYPE_NOT_ALLOWED_ERROR'
 
 export class TypeNotAllowedError extends JsError {
-	public name: string = TYPE_NOT_ALLOWED_ERROR
-	public code: number = 403
+	public readonly name: string = TYPE_NOT_ALLOWED_ERROR
+	public readonly code: number = 403
 	public message: string = 'type not allowed'
 	constructor (type: string, name: string) {
 		super()
@@ -273,13 +274,32 @@ export function isTypeNotAllowedError (err: Error): boolean {
 }
 
 /**
+ * unexpected
+ */
+export const UNEXPECTED_ERROR = 'UNEXPECTED_ERROR'
+
+export class UnexpectedError extends JsError {
+	public readonly name: string = UNEXPECTED_ERROR
+	public readonly code: number = 500
+	public message: string = 'unexpected'
+	constructor (name: string) {
+		super()
+		this.message += `: ${name}`
+	}
+}
+
+export function isUnexpectedError (err: Error): boolean {
+	return err.name === UNEXPECTED_ERROR
+}
+
+/**
  * to be done
  */
 export const TBD_ERROR = 'TBD_ERROR'
 
 export class ToBeDoneError extends JsError {
-	public name: string = TBD_ERROR
-	public code: number = 403
+	public readonly name: string = TBD_ERROR
+	public readonly code: number = 403
 	public message: string = 'TBD'
 	constructor (name: string) {
 		super()
@@ -321,6 +341,8 @@ export const errors = {
 	isNotAllowedError,
 	TypeNotAllowedError,
 	isTypeNotAllowedError,
+	UnexpectedError,
+	isUnexpectedError,
 	ToBeDoneError,
 	isToBeDoneError
 }
