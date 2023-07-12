@@ -146,6 +146,16 @@ test('type not allowed error', () => {
 	expect(errors.isTypeNotAllowedError(err)).toBe(true)
 })
 
+test('unexpected error', () => {
+	const err = new errors.UnexpectedError('something')
+	expect(err instanceof Error).toBe(true)
+	expect(err.name).toBe('UNEXPECTED_ERROR')
+	expect(err.message).toBe('unexpected: something')
+	expect(err.code).toBe(500)
+	expect(errors.isError(err)).toBe(true)
+	expect(errors.isUnexpectedError(err)).toBe(true)
+})
+
 test('to be done error', () => {
 	const err = new errors.ToBeDoneError('function a')
 	expect(err instanceof Error).toBe(true)
