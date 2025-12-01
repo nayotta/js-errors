@@ -16,12 +16,14 @@ $ npm install @nayotta/errors --save
 // COMMONJS
 const {
 	ToBeDoneError,
-	errors
+	errors,
+	JsError
 } = require('@nayotta/errors')
 // ESM
 import {
 	ToBeDoneError,
-	errors
+	errors,
+	JsError
 } from '@nayotta/errors'
 
 async function do () {
@@ -35,6 +37,40 @@ async function run () {
 			console.log(res.name) // TBD_ERROR
 			console.log(res.message) // TBD: function a
 			console.log(res.code) // 403
+			console.log(res)
+			return
+		}
+		throw res
+	}
+}
+
+// custom errors
+const TEST_ERROR_NAME = 'TEST_ERROR'
+class TestError extends Error {
+	public readonly name: string = TEST_ERROR_NAME
+	public readonly code: number = 400
+	public message: string = 'test'
+	constructor (message?: string) {
+		super()
+		this.message += `: ${message}`
+	}
+}
+
+function isTestError (err: Error) {
+	return errors.isError(err, { name: TEST_ERROR_NAME })
+}
+
+async function doSomethingCustom () {
+	throw new TestError('do something custom')
+}
+
+async function runCustomErr () {
+	const res = await doSomethingCustom().catch(err => err)
+	if (res instanceof Error) {
+		if (isTestError(res)) {
+			console.log(res.name) // TEST_ERROR
+			console.log(res.message) // echo: do something custom
+			console.log(res.code) // 400
 			console.log(res)
 			return
 		}
