@@ -293,25 +293,6 @@ export function isUnexpectedError (err: Error): boolean {
 }
 
 /**
- * unexpected
- */
-export const UNEXPECTED_ERROR = 'UNEXPECTED_ERROR'
-
-export class UnexpectedError extends JsError {
-	public readonly name: string = UNEXPECTED_ERROR
-	public readonly code: number = 500
-	public message: string = 'unexpected'
-	constructor (name: string) {
-		super()
-		this.message += `: ${name}`
-	}
-}
-
-export function isUnexpectedError (err: Error): boolean {
-	return err.name === UNEXPECTED_ERROR
-}
-
-/**
  * to be done
  */
 export const TBD_ERROR = 'TBD_ERROR'
