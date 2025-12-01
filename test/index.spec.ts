@@ -6,6 +6,23 @@ test('is error', () => {
 	expect(errors.isError('test')).toBe(false)
 })
 
+class TestError extends Error {
+	public readonly name: string = 'TEST_ERROR'
+	public readonly code: number = 400
+	public message: string = 'test'
+	constructor (message?: string) {
+		super()
+		this.message += `: ${message}`
+	}
+}
+
+test('is error with name', () => {
+	const err = new TestError('test')
+	expect(errors.isError(err, { name: 'TEST_ERROR' })).toBe(true)
+	expect(errors.isError(err, { name: 'TEST_ERROR2' })).toBe(false)
+	expect(errors.isError(err)).toBe(true)
+})
+
 test('unauthorization error', () => {
 	const err = new errors.UnauthorizationError('token')
 	expect(err instanceof Error).toBe(true)

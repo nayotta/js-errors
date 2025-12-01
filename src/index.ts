@@ -3,8 +3,8 @@ export class JsError extends Error {
 	public readonly code: number = 0
 }
 
-export function isError (err: any): boolean {
-	return err instanceof Error
+export function isError (err: any, options?: { name?: string }): boolean {
+	return err instanceof Error && (options?.name ? err.name === options.name : true)
 }
 
 /**
@@ -23,7 +23,7 @@ export class UnauthorizationError extends JsError {
 }
 
 export function isUnauthorizationError (err: Error): boolean {
-	return err.name === UNAUTHORIZATION_ERROR
+	return isError(err, { name: UNAUTHORIZATION_ERROR })
 }
 
 /**
@@ -42,7 +42,7 @@ export class NotFoundError extends JsError {
 }
 
 export function isNotFoundError (err: Error): boolean {
-	return err.name === NOT_FOUND_ERROR
+	return isError(err, { name: NOT_FOUND_ERROR })
 }
 
 /**
@@ -61,7 +61,7 @@ export class ResourceNotFoundError extends JsError {
 }
 
 export function isResourceNotFoundError (err: Error): boolean {
-	return err.name === RESOURCE_NOT_FOUND_ERROR
+	return isError(err, { name: RESOURCE_NOT_FOUND_ERROR })
 }
 
 /**
@@ -80,7 +80,7 @@ export class ResourceAlreadyExistedError extends JsError {
 }
 
 export function isResourceAlreadyExistedError (err: Error): boolean {
-	return err.name === RESOURCE_ALREADY_EXISTED_ERROR
+	return isError(err, { name: RESOURCE_ALREADY_EXISTED_ERROR })
 }
 
 /**
@@ -99,7 +99,7 @@ export class InvalidDataError extends JsError {
 }
 
 export function isInvalidDataError (err: Error): boolean {
-	return err.name === INVALID_DATA_ERROR
+	return isError(err, { name: INVALID_DATA_ERROR })
 }
 
 /**
@@ -118,7 +118,7 @@ export class RequiredError extends JsError {
 }
 
 export function isRequiredError (err: Error): boolean {
-	return err.name === REQUIRED_ERROR
+	return isError(err, { name: REQUIRED_ERROR })
 }
 
 /**
@@ -137,7 +137,7 @@ export class ArgumentRequiredError extends JsError {
 }
 
 export function isArgumentRequiredError (err: Error): boolean {
-	return err.name === ARGUMENT_REQUIRED_ERROR
+	return isError(err, { name: ARGUMENT_REQUIRED_ERROR })
 }
 
 /**
@@ -156,7 +156,7 @@ export class OptionRequiredError extends JsError {
 }
 
 export function isOptionRequiredError (err: Error): boolean {
-	return err.name === OPTION_REQUIRED_ERROR
+	return isError(err, { name: OPTION_REQUIRED_ERROR })
 }
 
 /**
@@ -175,7 +175,7 @@ export class HeaderRequiredError extends JsError {
 }
 
 export function isHeaderRequiredError (err: Error): boolean {
-	return err.name === HEADER_REQUIRED_ERROR
+	return isError(err, { name: HEADER_REQUIRED_ERROR })
 }
 
 /**
@@ -194,7 +194,7 @@ export class NotImplementedError extends JsError {
 }
 
 export function isNotImplementedError (err: Error): boolean {
-	return err.name === NOT_IMPLEMENTED_ERROR
+	return isError(err, { name: NOT_IMPLEMENTED_ERROR })
 }
 
 /**
@@ -213,7 +213,7 @@ export class UnsupportedError extends JsError {
 }
 
 export function isUnsupportedError (err: Error): boolean {
-	return err.name === UNSUPPORTED_ERROR
+	return isError(err, { name: UNSUPPORTED_ERROR })
 }
 
 /**
@@ -232,7 +232,7 @@ export class TypeUnsupportedError extends JsError {
 }
 
 export function isTypeUnsupportedError (err: Error): boolean {
-	return err.name === TYPE_UNSUPPORTED_ERROR
+	return isError(err, { name: TYPE_UNSUPPORTED_ERROR })
 }
 
 /**
@@ -251,7 +251,7 @@ export class NotAllowedError extends JsError {
 }
 
 export function isNotAllowedError (err: Error): boolean {
-	return err.name === NOT_ALLOWED_ERROR
+	return isError(err, { name: NOT_ALLOWED_ERROR })
 }
 
 /**
@@ -270,7 +270,26 @@ export class TypeNotAllowedError extends JsError {
 }
 
 export function isTypeNotAllowedError (err: Error): boolean {
-	return err.name === TYPE_NOT_ALLOWED_ERROR
+	return isError(err, { name: TYPE_NOT_ALLOWED_ERROR })
+}
+
+/**
+ * unexpected
+ */
+export const UNEXPECTED_ERROR = 'UNEXPECTED_ERROR'
+
+export class UnexpectedError extends JsError {
+	public readonly name: string = UNEXPECTED_ERROR
+	public readonly code: number = 500
+	public message: string = 'unexpected'
+	constructor (name: string) {
+		super()
+		this.message += `: ${name}`
+	}
+}
+
+export function isUnexpectedError (err: Error): boolean {
+	return isError(err, { name: UNEXPECTED_ERROR })
 }
 
 /**
@@ -308,7 +327,7 @@ export class ToBeDoneError extends JsError {
 }
 
 export function isToBeDoneError (err: Error): boolean {
-	return err.name === TBD_ERROR
+	return isError(err, { name: TBD_ERROR })
 }
 
 export const errors = {
